@@ -1,3 +1,4 @@
+import { captureRemixErrorBoundaryError, withSentry } from "@sentry/remix";
 import type { LinksFunction, V2_MetaFunction } from "@remix-run/node";
 import {
   isRouteErrorResponse,
@@ -66,13 +67,15 @@ function Document({ children, title }: PropsWithChildren<{ title?: string }>) {
   );
 }
 
-export default function App() {
+function App() {
   return (
     <Document>
       <Outlet />
     </Document>
   );
 }
+
+export default withSentry(App);
 
 export function ErrorBoundary() {
   const error = useRouteError();
@@ -91,6 +94,7 @@ export function ErrorBoundary() {
   }
 
   const errorMessage = error instanceof Error ? error.message : "Unknown error";
+  captureRemixErrorBoundaryError(error);
   return (
     <Document title="Uh-oh!">
       <div className="error-container">

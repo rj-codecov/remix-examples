@@ -357,3 +357,7 @@ label > [type="radio"] {
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
 }
+
+.smolSpace {
+  margin-top: 10px;
+}
