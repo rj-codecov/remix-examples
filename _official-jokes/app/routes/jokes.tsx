@@ -76,7 +76,7 @@ export default function JokesRoute() {
               Add your own
             </Link>
             <button onClick={()=>{myFakeError()}} className="button smolSpace">
-              Generate a random AI joke!
+              Generate a random AI joke!!
             </button>
             <button onClick={()=>{shouldNotSeeThis()}} className="button smolSpace">
               Don't click this button...

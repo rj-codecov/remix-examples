@@ -15,9 +15,13 @@ Sentry.init({
         console.log("found one!");
         return null;
       }
-      event.
-      console.log("this is not the even you are looking for");
+      console.log(event);
       return event;
+    },
+
+    // filtering out ui click breadcrumbs!
+    beforeBreadcrumb(breadcrumb, hint) {
+      return breadcrumb.category === "ui.click" ? null : breadcrumb
     },
 
     integrations: [new Sentry.BrowserTracing({
